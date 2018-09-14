@@ -8,8 +8,8 @@ module.exports = function(req, res) {
   const data = processData(req.body);
   console.log(req.body);
 
-  getClient(data, getTwitterCredentials(req.params.token))
-  .postTweet((err, tweet) => responseHandler(res, err, success(tweet) ));
+  getClient(getTwitterCredentials(req.params.token))
+  .postTweet(data, (err, tweet) => responseHandler(res, err, success(tweet) ));
   
   function success(tweet) {
     return (defaultData) => sendResponse(res, 201, {
